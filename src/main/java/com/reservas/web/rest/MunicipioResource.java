@@ -7,14 +7,21 @@ import com.reservas.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import tech.jhipster.web.util.HeaderUtil;
+import tech.jhipster.web.util.PaginationUtil;
 import tech.jhipster.web.util.ResponseUtil;
 
 /**
@@ -150,6 +157,19 @@ public class MunicipioResource {
         log.debug("REST request to get Municipio : {}", id);
         Optional<Municipio> municipio = municipioService.findOne(id);
         return ResponseUtil.wrapOrNotFound(municipio);
+    }
+
+    @GetMapping("/listaPages")
+    public ResponseEntity<List<Municipio>> getMunicipioPage(Pageable pageable, @RequestParam Map<String, String> params) {
+        log.debug("REST request to get municipio page");
+        params.remove("size");
+        params.remove("sort");
+
+        final Page<Municipio> page = municipioService.listaMunicipioPaginado(pageable, params);
+
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
     /**

@@ -3,9 +3,14 @@ package com.reservas.service;
 import com.reservas.domain.Municipio;
 import com.reservas.repository.MunicipioRepository;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -98,5 +103,19 @@ public class MunicipioService {
     public void delete(Long id) {
         log.debug("Request to delete Municipio : {}", id);
         municipioRepository.deleteById(id);
+    }
+
+    public Page<Municipio> listaParaPage(Pageable pageable, List<Municipio> lista, Long totalItens) {
+        int pageSize = pageable.getPageSize();
+        int currentPage = pageable.getPageNumber();
+        Page<Municipio> page = new PageImpl<Municipio>(lista, PageRequest.of(currentPage, pageSize), totalItens);
+        return page;
+    }
+
+    public Page<Municipio> listaMunicipioPaginado(Pageable pageable, Map<String, String> params) {
+        Long countTotalMunicipios = municipioRepository.countPagMunicipio(params.get("search"));
+        List<Municipio> listaMunicipio = municipioRepository.pagMunicipio(params.get("search"), Integer.parseInt(params.get("page")));
+        Page<Municipio> municipioPage = listaParaPage(pageable, listaMunicipio, countTotalMunicipios);
+        return municipioPage;
     }
 }
