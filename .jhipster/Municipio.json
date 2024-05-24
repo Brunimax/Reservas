@@ -1,0 +1,31 @@
+{
+  "annotations": {
+    "changelogDate": "20240524125621"
+  },
+  "applications": ["reservas"],
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Municipio",
+  "relationships": [
+    {
+      "otherEntityName": "hotel",
+      "otherEntityRelationshipName": "municipio",
+      "relationshipName": "hotel",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "estado",
+      "otherEntityRelationshipName": "municipio",
+      "relationshipName": "estado",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

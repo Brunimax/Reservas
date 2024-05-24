@@ -1,0 +1,11 @@
+id;foto;foto_content_type;status
+1;../fake-data/blob/hipster.png;image/png;false
+2;../fake-data/blob/hipster.png;image/png;true
+3;../fake-data/blob/hipster.png;image/png;false
+4;../fake-data/blob/hipster.png;image/png;false
+5;../fake-data/blob/hipster.png;image/png;true
+6;../fake-data/blob/hipster.png;image/png;false
+7;../fake-data/blob/hipster.png;image/png;true
+8;../fake-data/blob/hipster.png;image/png;true
+9;../fake-data/blob/hipster.png;image/png;true
+10;../fake-data/blob/hipster.png;image/png;true

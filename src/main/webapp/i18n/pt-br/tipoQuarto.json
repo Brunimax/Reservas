@@ -1,0 +1,25 @@
+{
+  "reservasApp": {
+    "tipoQuarto": {
+      "home": {
+        "title": "Tipo Quartos",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Tipo Quarto",
+        "createOrEditLabel": "Criar ou editar Tipo Quarto",
+        "notFound": "Nenhum Tipo Quarto encontrado"
+      },
+      "created": "Um novo Tipo Quarto foi criado com o identificador {{ param }}",
+      "updated": "Um Tipo Quarto foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Tipo Quarto foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Tipo Quarto {{ id }}?"
+      },
+      "detail": {
+        "title": "Tipo Quarto"
+      },
+      "id": "ID",
+      "nome": "Nome",
+      "quarto": "Quarto"
+    }
+  }
+}

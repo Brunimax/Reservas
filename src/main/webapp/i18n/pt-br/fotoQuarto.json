@@ -1,0 +1,26 @@
+{
+  "reservasApp": {
+    "fotoQuarto": {
+      "home": {
+        "title": "Foto Quartos",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Foto Quarto",
+        "createOrEditLabel": "Criar ou editar Foto Quarto",
+        "notFound": "Nenhum Foto Quarto encontrado"
+      },
+      "created": "Um novo Foto Quarto foi criado com o identificador {{ param }}",
+      "updated": "Um Foto Quarto foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Foto Quarto foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Foto Quarto {{ id }}?"
+      },
+      "detail": {
+        "title": "Foto Quarto"
+      },
+      "id": "ID",
+      "foto": "Foto",
+      "status": "Status",
+      "quarto": "Quarto"
+    }
+  }
+}

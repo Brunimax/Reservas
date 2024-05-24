@@ -1,0 +1,28 @@
+{
+  "annotations": {
+    "changelogDate": "20240524125421"
+  },
+  "applications": ["reservas"],
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "sigla",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Pais",
+  "relationships": [
+    {
+      "otherEntityName": "estado",
+      "otherEntityRelationshipName": "pais",
+      "relationshipName": "estado",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

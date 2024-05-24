@@ -1,0 +1,31 @@
+{
+  "reservasApp": {
+    "quarto": {
+      "home": {
+        "title": "Quartos",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Quarto",
+        "createOrEditLabel": "Criar ou editar Quarto",
+        "notFound": "Nenhum Quarto encontrado"
+      },
+      "created": "Um novo Quarto foi criado com o identificador {{ param }}",
+      "updated": "Um Quarto foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Quarto foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Quarto {{ id }}?"
+      },
+      "detail": {
+        "title": "Quarto"
+      },
+      "id": "ID",
+      "nome": "Nome",
+      "quantidadeHospedes": "Quantidade Hospedes",
+      "status": "Status",
+      "classificacao": "Classificacao",
+      "fotoQuarto": "Foto Quarto",
+      "reserva": "Reserva",
+      "hotel": "Hotel",
+      "tipoQuarto": "Tipo Quarto"
+    }
+  }
+}

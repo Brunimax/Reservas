@@ -1,0 +1,51 @@
+{
+  "annotations": {
+    "changelogDate": "20240524124721"
+  },
+  "applications": ["reservas"],
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "sobrenome",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "cpf",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dataNascimento",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "telefone",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Pessoa",
+  "relationships": [
+    {
+      "otherEntityName": "reserva",
+      "otherEntityRelationshipName": "pessoa",
+      "relationshipName": "reserva",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "hotel",
+      "otherEntityRelationshipName": "pessoa",
+      "relationshipName": "hotel",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

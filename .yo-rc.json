@@ -1,0 +1,20 @@
+{
+  "generator-jhipster": {
+    "applicationIndex": 0,
+    "applicationType": "monolith",
+    "authenticationType": "jwt",
+    "baseName": "reservas",
+    "buildTool": "gradle",
+    "clientFramework": "react",
+    "devServerPort": 9060,
+    "entities": ["Pessoa", "Hotel", "Quarto", "TipoQuarto", "FotoQuarto", "Reserva", "Avaliacao", "Pais", "Estado", "Municipio"],
+    "jhipsterVersion": "8.4.0",
+    "jwtSecretKey": "OGEyZGZhYWU1N2M3OGYyMmE3Y2VhYWZlZGQ4MjllNDQ0YjBlYzIxMWZhZmM5NTI0MzY4MGM1OGIwY2JkOTc4Yzc0MDQ0NzJhMTAzY2E2MTFkYmMzOWU2OWRjZjA0N2Y3MzBjZmEyNTliMGQwYzhjZGMzZDU1YjY0ZjUxNzIzMmI=",
+    "languages": ["pt-br"],
+    "lastLiquibaseTimestamp": 1716555381000,
+    "nativeLanguage": "pt-br",
+    "packageFolder": "com/reservas",
+    "packageName": "com.reservas",
+    "prodDatabaseType": "postgresql"
+  }
+}

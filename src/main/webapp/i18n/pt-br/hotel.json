@@ -1,0 +1,34 @@
+{
+  "reservasApp": {
+    "hotel": {
+      "home": {
+        "title": "Hotels",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Hotel",
+        "createOrEditLabel": "Criar ou editar Hotel",
+        "notFound": "Nenhum Hotel encontrado"
+      },
+      "created": "Um novo Hotel foi criado com o identificador {{ param }}",
+      "updated": "Um Hotel foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Hotel foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Hotel {{ id }}?"
+      },
+      "detail": {
+        "title": "Hotel"
+      },
+      "id": "ID",
+      "nome": "Nome",
+      "quantidadeQuartos": "Quantidade Quartos",
+      "vagas": "Vagas",
+      "classificacao": "Classificacao",
+      "status": "Status",
+      "cep": "Cep",
+      "bairro": "Bairro",
+      "endereco": "Endereco",
+      "quarto": "Quarto",
+      "municipio": "Municipio",
+      "pessoa": "Pessoa"
+    }
+  }
+}

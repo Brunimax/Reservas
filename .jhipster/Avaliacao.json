@@ -1,0 +1,28 @@
+{
+  "annotations": {
+    "changelogDate": "20240524125321"
+  },
+  "applications": ["reservas"],
+  "fields": [
+    {
+      "fieldName": "pontos",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "comentario",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Avaliacao",
+  "relationships": [
+    {
+      "otherEntityName": "reserva",
+      "otherEntityRelationshipName": "avaliacao",
+      "relationshipName": "reserva",
+      "relationshipSide": "right",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

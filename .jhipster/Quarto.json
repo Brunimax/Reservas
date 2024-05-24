@@ -1,0 +1,57 @@
+{
+  "annotations": {
+    "changelogDate": "20240524124921"
+  },
+  "applications": ["reservas"],
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "quantidadeHospedes",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "classificacao",
+      "fieldType": "Long"
+    }
+  ],
+  "name": "Quarto",
+  "relationships": [
+    {
+      "otherEntityName": "fotoQuarto",
+      "otherEntityRelationshipName": "quarto",
+      "relationshipName": "fotoQuarto",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "reserva",
+      "otherEntityRelationshipName": "quarto",
+      "relationshipName": "reserva",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "hotel",
+      "otherEntityRelationshipName": "quarto",
+      "relationshipName": "hotel",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "tipoQuarto",
+      "otherEntityRelationshipName": "quarto",
+      "relationshipName": "tipoQuarto",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

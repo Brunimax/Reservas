@@ -1,0 +1,35 @@
+{
+  "annotations": {
+    "changelogDate": "20240524125521"
+  },
+  "applications": ["reservas"],
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "sigla",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Estado",
+  "relationships": [
+    {
+      "otherEntityName": "municipio",
+      "otherEntityRelationshipName": "estado",
+      "relationshipName": "municipio",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "pais",
+      "otherEntityRelationshipName": "estado",
+      "relationshipName": "pais",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

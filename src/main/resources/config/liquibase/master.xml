@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <property name="now" value="current_timestamp" dbms="postgresql"/>
+    <property name="floatType" value="float4" dbms="postgresql"/>
+    <property name="clobType" value="clob" dbms="postgresql"/>
+    <property name="blobType" value="blob" dbms="postgresql"/>
+    <property name="uuidType" value="uuid" dbms="postgresql"/>
+    <property name="datetimeType" value="datetime" dbms="postgresql"/>
+
+    <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240524124721_added_entity_Pessoa.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240524124821_added_entity_Hotel.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240524124921_added_entity_Quarto.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240524125021_added_entity_TipoQuarto.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240524125121_added_entity_FotoQuarto.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240524125221_added_entity_Reserva.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240524125321_added_entity_Avaliacao.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240524125421_added_entity_Pais.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240524125521_added_entity_Estado.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240524125621_added_entity_Municipio.xml" relativeToChangelogFile="false"/>
+    <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <include file="config/liquibase/changelog/20240524124821_added_entity_constraints_Hotel.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240524124921_added_entity_constraints_Quarto.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240524125121_added_entity_constraints_FotoQuarto.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240524125221_added_entity_constraints_Reserva.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240524125521_added_entity_constraints_Estado.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240524125621_added_entity_constraints_Municipio.xml" relativeToChangelogFile="false"/>
+    <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
+    <!-- jhipster-needle-liquibase-add-incremental-changelog - JHipster will add incremental liquibase changelogs here -->
+</databaseChangeLog>

@@ -1,0 +1,66 @@
+{
+  "annotations": {
+    "changelogDate": "20240524124821"
+  },
+  "applications": ["reservas"],
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "quantidadeQuartos",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "vagas",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "classificacao",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "cep",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "bairro",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "endereco",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Hotel",
+  "relationships": [
+    {
+      "otherEntityName": "quarto",
+      "otherEntityRelationshipName": "hotel",
+      "relationshipName": "quarto",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "municipio",
+      "otherEntityRelationshipName": "hotel",
+      "relationshipName": "municipio",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "pessoa",
+      "otherEntityRelationshipName": "hotel",
+      "relationshipName": "pessoa",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

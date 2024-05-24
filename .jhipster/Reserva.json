@@ -1,0 +1,46 @@
+{
+  "annotations": {
+    "changelogDate": "20240524125221"
+  },
+  "applications": ["reservas"],
+  "fields": [
+    {
+      "fieldName": "dataChekin",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "dataChekout",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "dataReserva",
+      "fieldType": "Instant"
+    }
+  ],
+  "name": "Reserva",
+  "relationships": [
+    {
+      "otherEntityName": "avaliacao",
+      "otherEntityRelationshipName": "reserva",
+      "relationshipName": "avaliacao",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "quarto",
+      "otherEntityRelationshipName": "reserva",
+      "relationshipName": "quarto",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "pessoa",
+      "otherEntityRelationshipName": "reserva",
+      "relationshipName": "pessoa",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

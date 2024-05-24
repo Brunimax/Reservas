@@ -1,0 +1,122 @@
+
+
+application {
+  config {
+    baseName reservas
+    applicationType monolith
+    packageName com.reservas
+    authenticationType jwt
+    prodDatabaseType postgresql
+    clientFramework react
+    buildTool gradle
+    nativeLanguage pt-br
+  }
+  entities *
+  service * with serviceClass
+}
+
+entity Pessoa {
+	nome String
+    sobrenome String
+    cpf String
+    dataNascimento Instant
+    telefone String
+    email String
+}
+
+entity Hotel {
+	nome String
+    quantidadeQuartos Long
+    vagas Long
+    classificacao Long
+    status Boolean
+    cep String
+    bairro String
+    endereco String
+}
+
+entity Quarto {
+	nome String
+    quantidadeHospedes Long
+    status Boolean
+    classificacao Long
+}
+
+entity TipoQuarto {
+	nome String
+}
+
+entity FotoQuarto {
+	foto Blob
+    status Boolean
+}
+
+entity Reserva {
+	dataChekin Instant
+	dataChekout Instant
+    dataReserva Instant
+}
+
+entity Avaliacao {
+	pontos Long
+    comentario String
+}
+
+entity Pais {
+	nome String
+    sigla String
+}
+
+entity Estado {
+	nome String
+    sigla String
+}
+
+entity Municipio {
+	nome String
+}
+
+// defining multiple OneToMany relationships with comments
+relationship OneToMany {
+    Pais to Estado
+}
+
+relationship OneToMany {
+    Estado to Municipio
+}
+
+relationship OneToMany {
+    Municipio to Hotel
+}
+
+relationship OneToMany {
+    Quarto to FotoQuarto
+    Quarto to Reserva
+}
+
+relationship OneToMany {
+    Hotel to Quarto
+}
+
+relationship OneToMany {
+    TipoQuarto to Quarto
+}
+
+relationship OneToMany {
+    Pessoa to Reserva
+    Pessoa to Hotel
+}
+
+relationship OneToOne {
+    Reserva to Avaliacao
+}
+
+// Set pagination options
+
+// Use Data Transfer Objects (DTO)
+// dto * with mapstruct
+
+// Set service options to all except few
+
+// Set an angular suffix
+// angularSuffix * with mySuffix

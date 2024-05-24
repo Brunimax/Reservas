@@ -1,0 +1,29 @@
+{
+  "annotations": {
+    "changelogDate": "20240524125121"
+  },
+  "applications": ["reservas"],
+  "fields": [
+    {
+      "fieldName": "foto",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "any"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "Boolean"
+    }
+  ],
+  "name": "FotoQuarto",
+  "relationships": [
+    {
+      "otherEntityName": "quarto",
+      "otherEntityRelationshipName": "fotoQuarto",
+      "relationshipName": "quarto",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}
