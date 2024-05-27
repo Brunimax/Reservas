@@ -12,19 +12,19 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface MunicipioRepository extends JpaRepository<Municipio, Long> {
     @Query(
-        value = "SELECT mun.* \n" +
-        "FROM public.municipio \n" +
-        "WHERE (?1 = '' OR upper(unaccent(nome)) LIKE upper(unaccent('%' || ?1 || '%'))) \n" +
-        "ORDER BY nome ASC \n" +
+        value = "SELECT mu.* \n" +
+        "FROM public.municipio as mu \n" +
+        "WHERE (CASE WHEN ?1 != '' THEN POSITION(upper(unaccent(?1)) IN upper(unaccent(mu.nome))) > 0 ELSE true END) \n" +
+        "ORDER BY mu.nome ASC \n" +
         "LIMIT 10 OFFSET ?2 * 10",
         nativeQuery = true
     )
     List<Municipio> pagMunicipio(String nomeMunicipio, int page);
 
     @Query(
-        value = "SELECT COUNT(mun.*) \n" +
-        "FROM public.municipio \n" +
-        "WHERE (?1 = '' OR upper(unaccent(nome)) LIKE upper(unaccent('%' || ?1 || '%'))) \n",
+        value = "SELECT COUNT(mu.*) \n" +
+        "FROM public.municipio as mu \n" +
+        "WHERE (CASE WHEN ?1 != '' THEN POSITION(upper(unaccent(?1)) IN upper(unaccent(mu.nome))) > 0 ELSE true END) \n",
         nativeQuery = true
     )
     Long countPagMunicipio(String nomeMunicipio);

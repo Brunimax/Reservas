@@ -162,8 +162,6 @@ public class MunicipioResource {
     @GetMapping("/listaPages")
     public ResponseEntity<List<Municipio>> getMunicipioPage(Pageable pageable, @RequestParam Map<String, String> params) {
         log.debug("REST request to get municipio page");
-        params.remove("size");
-        params.remove("sort");
 
         final Page<Municipio> page = municipioService.listaMunicipioPaginado(pageable, params);
 
