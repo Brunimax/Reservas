@@ -3,16 +3,11 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Button, Col, Table } from 'reactstrap';
 import { Translate, getSortState } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSort, faSortUp, faSortDown, faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
-import { ASC, DESC } from 'app/shared/util/pagination.constants';
-import { overrideSortStateWithQueryParams } from 'app/shared/util/entity-utils';
+
 import { useAppDispatch, useAppSelector } from 'app/config/store';
-import axios from 'axios';
-import { toast } from 'react-toastify';
-import { nextPage, previusPage } from 'app/shared/util/miscs';
 
 import { IMunicipio } from 'app/shared/model/municipio.model';
-import { getEntities, getEntitiesList, reset } from './municipio.reducer';
+import { getEntitiesList, reset } from './municipio.reducer';
 import PageCounter from 'app/shared/layout/pagination';
 
 export const Municipio = () => {
