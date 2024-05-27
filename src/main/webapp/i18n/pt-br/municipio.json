@@ -19,6 +19,7 @@
       },
       "id": "ID",
       "nome": "Nome",
+      "sigla": "Estado",
       "hotel": "Hotel",
       "estado": "Estado"
     }
