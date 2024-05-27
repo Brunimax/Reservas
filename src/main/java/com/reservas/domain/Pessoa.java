@@ -44,16 +44,6 @@ public class Pessoa implements Serializable {
     @Column(name = "email")
     private String email;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pessoa")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "avaliacao", "quarto", "pessoa" }, allowSetters = true)
-    private Set<Reserva> reservas = new HashSet<>();
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pessoa")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "quartos", "municipio", "pessoa" }, allowSetters = true)
-    private Set<Hotel> hotels = new HashSet<>();
-
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
     public Long getId() {
@@ -145,68 +135,6 @@ public class Pessoa implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public Set<Reserva> getReservas() {
-        return this.reservas;
-    }
-
-    public void setReservas(Set<Reserva> reservas) {
-        if (this.reservas != null) {
-            this.reservas.forEach(i -> i.setPessoa(null));
-        }
-        if (reservas != null) {
-            reservas.forEach(i -> i.setPessoa(this));
-        }
-        this.reservas = reservas;
-    }
-
-    public Pessoa reservas(Set<Reserva> reservas) {
-        this.setReservas(reservas);
-        return this;
-    }
-
-    public Pessoa addReserva(Reserva reserva) {
-        this.reservas.add(reserva);
-        reserva.setPessoa(this);
-        return this;
-    }
-
-    public Pessoa removeReserva(Reserva reserva) {
-        this.reservas.remove(reserva);
-        reserva.setPessoa(null);
-        return this;
-    }
-
-    public Set<Hotel> getHotels() {
-        return this.hotels;
-    }
-
-    public void setHotels(Set<Hotel> hotels) {
-        if (this.hotels != null) {
-            this.hotels.forEach(i -> i.setPessoa(null));
-        }
-        if (hotels != null) {
-            hotels.forEach(i -> i.setPessoa(this));
-        }
-        this.hotels = hotels;
-    }
-
-    public Pessoa hotels(Set<Hotel> hotels) {
-        this.setHotels(hotels);
-        return this;
-    }
-
-    public Pessoa addHotel(Hotel hotel) {
-        this.hotels.add(hotel);
-        hotel.setPessoa(this);
-        return this;
-    }
-
-    public Pessoa removeHotel(Hotel hotel) {
-        this.hotels.remove(hotel);
-        hotel.setPessoa(null);
-        return this;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here

@@ -33,17 +33,16 @@ public class Reserva implements Serializable {
     @Column(name = "data_reserva")
     private Instant dataReserva;
 
-    @JsonIgnoreProperties(value = { "reserva" }, allowSetters = true)
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(unique = true)
+    @OneToOne
+    @JoinColumn(unique = false)
     private Avaliacao avaliacao;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnoreProperties(value = { "fotoQuartos", "reservas", "hotel", "tipoQuarto" }, allowSetters = true)
+    @ManyToOne
+    @JoinColumn(unique = false)
     private Quarto quarto;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnoreProperties(value = { "reservas", "hotels" }, allowSetters = true)
+    @ManyToOne
+    @JoinColumn(unique = false)
     private Pessoa pessoa;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here

@@ -31,11 +31,6 @@ public class Pais implements Serializable {
     @Column(name = "sigla")
     private String sigla;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pais")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "municipios", "pais" }, allowSetters = true)
-    private Set<Estado> estados = new HashSet<>();
-
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
     public Long getId() {
@@ -75,37 +70,6 @@ public class Pais implements Serializable {
 
     public void setSigla(String sigla) {
         this.sigla = sigla;
-    }
-
-    public Set<Estado> getEstados() {
-        return this.estados;
-    }
-
-    public void setEstados(Set<Estado> estados) {
-        if (this.estados != null) {
-            this.estados.forEach(i -> i.setPais(null));
-        }
-        if (estados != null) {
-            estados.forEach(i -> i.setPais(this));
-        }
-        this.estados = estados;
-    }
-
-    public Pais estados(Set<Estado> estados) {
-        this.setEstados(estados);
-        return this;
-    }
-
-    public Pais addEstado(Estado estado) {
-        this.estados.add(estado);
-        estado.setPais(this);
-        return this;
-    }
-
-    public Pais removeEstado(Estado estado) {
-        this.estados.remove(estado);
-        estado.setPais(null);
-        return this;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here

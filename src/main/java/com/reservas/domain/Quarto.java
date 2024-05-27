@@ -37,22 +37,12 @@ public class Quarto implements Serializable {
     @Column(name = "classificacao")
     private Long classificacao;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "quarto")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "quarto" }, allowSetters = true)
-    private Set<FotoQuarto> fotoQuartos = new HashSet<>();
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "quarto")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "avaliacao", "quarto", "pessoa" }, allowSetters = true)
-    private Set<Reserva> reservas = new HashSet<>();
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnoreProperties(value = { "quartos", "municipio", "pessoa" }, allowSetters = true)
+    @ManyToOne
+    @JoinColumn(unique = false)
     private Hotel hotel;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnoreProperties(value = { "quartos" }, allowSetters = true)
+    @ManyToOne
+    @JoinColumn(unique = false)
     private TipoQuarto tipoQuarto;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
@@ -120,68 +110,6 @@ public class Quarto implements Serializable {
 
     public void setClassificacao(Long classificacao) {
         this.classificacao = classificacao;
-    }
-
-    public Set<FotoQuarto> getFotoQuartos() {
-        return this.fotoQuartos;
-    }
-
-    public void setFotoQuartos(Set<FotoQuarto> fotoQuartos) {
-        if (this.fotoQuartos != null) {
-            this.fotoQuartos.forEach(i -> i.setQuarto(null));
-        }
-        if (fotoQuartos != null) {
-            fotoQuartos.forEach(i -> i.setQuarto(this));
-        }
-        this.fotoQuartos = fotoQuartos;
-    }
-
-    public Quarto fotoQuartos(Set<FotoQuarto> fotoQuartos) {
-        this.setFotoQuartos(fotoQuartos);
-        return this;
-    }
-
-    public Quarto addFotoQuarto(FotoQuarto fotoQuarto) {
-        this.fotoQuartos.add(fotoQuarto);
-        fotoQuarto.setQuarto(this);
-        return this;
-    }
-
-    public Quarto removeFotoQuarto(FotoQuarto fotoQuarto) {
-        this.fotoQuartos.remove(fotoQuarto);
-        fotoQuarto.setQuarto(null);
-        return this;
-    }
-
-    public Set<Reserva> getReservas() {
-        return this.reservas;
-    }
-
-    public void setReservas(Set<Reserva> reservas) {
-        if (this.reservas != null) {
-            this.reservas.forEach(i -> i.setQuarto(null));
-        }
-        if (reservas != null) {
-            reservas.forEach(i -> i.setQuarto(this));
-        }
-        this.reservas = reservas;
-    }
-
-    public Quarto reservas(Set<Reserva> reservas) {
-        this.setReservas(reservas);
-        return this;
-    }
-
-    public Quarto addReserva(Reserva reserva) {
-        this.reservas.add(reserva);
-        reserva.setQuarto(this);
-        return this;
-    }
-
-    public Quarto removeReserva(Reserva reserva) {
-        this.reservas.remove(reserva);
-        reserva.setQuarto(null);
-        return this;
     }
 
     public Hotel getHotel() {

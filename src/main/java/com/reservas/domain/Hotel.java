@@ -49,17 +49,12 @@ public class Hotel implements Serializable {
     @Column(name = "endereco")
     private String endereco;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "hotel")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "fotoQuartos", "reservas", "hotel", "tipoQuarto" }, allowSetters = true)
-    private Set<Quarto> quartos = new HashSet<>();
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnoreProperties(value = { "hotels", "estado" }, allowSetters = true)
+    @ManyToOne
+    @JoinColumn(unique = false)
     private Municipio municipio;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnoreProperties(value = { "reservas", "hotels" }, allowSetters = true)
+    @ManyToOne
+    @JoinColumn(unique = false)
     private Pessoa pessoa;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
@@ -179,37 +174,6 @@ public class Hotel implements Serializable {
 
     public void setEndereco(String endereco) {
         this.endereco = endereco;
-    }
-
-    public Set<Quarto> getQuartos() {
-        return this.quartos;
-    }
-
-    public void setQuartos(Set<Quarto> quartos) {
-        if (this.quartos != null) {
-            this.quartos.forEach(i -> i.setHotel(null));
-        }
-        if (quartos != null) {
-            quartos.forEach(i -> i.setHotel(this));
-        }
-        this.quartos = quartos;
-    }
-
-    public Hotel quartos(Set<Quarto> quartos) {
-        this.setQuartos(quartos);
-        return this;
-    }
-
-    public Hotel addQuarto(Quarto quarto) {
-        this.quartos.add(quarto);
-        quarto.setHotel(this);
-        return this;
-    }
-
-    public Hotel removeQuarto(Quarto quarto) {
-        this.quartos.remove(quarto);
-        quarto.setHotel(null);
-        return this;
     }
 
     public Municipio getMunicipio() {

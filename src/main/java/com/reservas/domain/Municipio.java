@@ -28,13 +28,8 @@ public class Municipio implements Serializable {
     @Column(name = "nome")
     private String nome;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "municipio")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "quartos", "municipio", "pessoa" }, allowSetters = true)
-    private Set<Hotel> hotels = new HashSet<>();
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnoreProperties(value = { "municipios", "pais" }, allowSetters = true)
+    @ManyToOne
+    @JoinColumn(unique = false)
     private Estado estado;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
@@ -63,37 +58,6 @@ public class Municipio implements Serializable {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public Set<Hotel> getHotels() {
-        return this.hotels;
-    }
-
-    public void setHotels(Set<Hotel> hotels) {
-        if (this.hotels != null) {
-            this.hotels.forEach(i -> i.setMunicipio(null));
-        }
-        if (hotels != null) {
-            hotels.forEach(i -> i.setMunicipio(this));
-        }
-        this.hotels = hotels;
-    }
-
-    public Municipio hotels(Set<Hotel> hotels) {
-        this.setHotels(hotels);
-        return this;
-    }
-
-    public Municipio addHotel(Hotel hotel) {
-        this.hotels.add(hotel);
-        hotel.setMunicipio(this);
-        return this;
-    }
-
-    public Municipio removeHotel(Hotel hotel) {
-        this.hotels.remove(hotel);
-        hotel.setMunicipio(null);
-        return this;
     }
 
     public Estado getEstado() {

@@ -29,8 +29,8 @@ public class Avaliacao implements Serializable {
     @Column(name = "comentario")
     private String comentario;
 
-    @JsonIgnoreProperties(value = { "avaliacao", "quarto", "pessoa" }, allowSetters = true)
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "avaliacao")
+    @OneToOne
+    @JoinColumn(unique = false)
     private Reserva reserva;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here

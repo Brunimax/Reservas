@@ -33,8 +33,8 @@ public class FotoQuarto implements Serializable {
     @Column(name = "status")
     private Boolean status;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnoreProperties(value = { "fotoQuartos", "reservas", "hotel", "tipoQuarto" }, allowSetters = true)
+    @ManyToOne
+    @JoinColumn(unique = false)
     private Quarto quarto;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here

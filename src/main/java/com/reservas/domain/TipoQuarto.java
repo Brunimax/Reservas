@@ -28,11 +28,6 @@ public class TipoQuarto implements Serializable {
     @Column(name = "nome")
     private String nome;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "tipoQuarto")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "fotoQuartos", "reservas", "hotel", "tipoQuarto" }, allowSetters = true)
-    private Set<Quarto> quartos = new HashSet<>();
-
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
     public Long getId() {
@@ -59,37 +54,6 @@ public class TipoQuarto implements Serializable {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public Set<Quarto> getQuartos() {
-        return this.quartos;
-    }
-
-    public void setQuartos(Set<Quarto> quartos) {
-        if (this.quartos != null) {
-            this.quartos.forEach(i -> i.setTipoQuarto(null));
-        }
-        if (quartos != null) {
-            quartos.forEach(i -> i.setTipoQuarto(this));
-        }
-        this.quartos = quartos;
-    }
-
-    public TipoQuarto quartos(Set<Quarto> quartos) {
-        this.setQuartos(quartos);
-        return this;
-    }
-
-    public TipoQuarto addQuarto(Quarto quarto) {
-        this.quartos.add(quarto);
-        quarto.setTipoQuarto(this);
-        return this;
-    }
-
-    public TipoQuarto removeQuarto(Quarto quarto) {
-        this.quartos.remove(quarto);
-        quarto.setTipoQuarto(null);
-        return this;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
