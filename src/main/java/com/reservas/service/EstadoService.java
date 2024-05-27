@@ -3,9 +3,14 @@ package com.reservas.service;
 import com.reservas.domain.Estado;
 import com.reservas.repository.EstadoRepository;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -101,5 +106,19 @@ public class EstadoService {
     public void delete(Long id) {
         log.debug("Request to delete Estado : {}", id);
         estadoRepository.deleteById(id);
+    }
+
+    public Page<Estado> listaParaPage(Pageable pageable, List<Estado> lista, Long totalItens) {
+        int pageSize = pageable.getPageSize();
+        int currentPage = pageable.getPageNumber();
+        Page<Estado> page = new PageImpl<Estado>(lista, PageRequest.of(currentPage, pageSize), totalItens);
+        return page;
+    }
+
+    public Page<Estado> listaEstadoPaginada(Pageable pageable, Map<String, String> params) {
+        Long countTotalEstados = estadoRepository.countPagMunicipio(params.get("search"));
+        List<Estado> listaEstados = estadoRepository.pagEstados(params.get("search"), Integer.parseInt(params.get("page")));
+        Page<Estado> estadoPage = listaParaPage(pageable, listaEstados, countTotalEstados);
+        return estadoPage;
     }
 }
