@@ -73,6 +73,9 @@ export const Municipio = () => {
                   <th>
                     <Translate contentKey="reservasApp.municipio.nome">Nome</Translate>
                   </th>
+                  <th>
+                    <Translate contentKey="reservasApp.municipio.sigla">Estado</Translate>
+                  </th>
                   <th />
                 </tr>
               </thead>
@@ -80,6 +83,7 @@ export const Municipio = () => {
                 {municipioList.map((municipio, i) => (
                   <tr key={`entity-${i}`} data-cy="entityTable">
                     <td>{municipio.nome}</td>
+                    <td>{municipio.estado.sigla}</td>
                     <td className="text-end">
                       <div className="btn-group flex-btn-group-container">
                         <Button
