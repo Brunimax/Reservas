@@ -20,6 +20,7 @@
     "lastName": "Sobrenome",
     "email": "E-mail",
     "activated": "Ativo",
+    "password": "Senha",
     "deactivated": "Inativo",
     "profiles": "Perfis",
     "langKey": "Idioma",

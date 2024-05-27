@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { locales, languages } from 'app/config/translation';
 import { getUser, getRoles, updateUser, createUser, reset } from './user-management.reducer';
 import { useAppDispatch, useAppSelector } from 'app/config/store';
+import PasswordStrengthBar from 'app/shared/layout/password/password-strength-bar';
 
 export const UserManagementUpdate = () => {
   const dispatch = useAppDispatch();
@@ -14,6 +15,7 @@ export const UserManagementUpdate = () => {
   const navigate = useNavigate();
 
   const { login } = useParams<'login'>();
+  const [password, setPassword] = useState('');
   const isNew = login === undefined;
 
   useEffect(() => {
@@ -40,6 +42,8 @@ export const UserManagementUpdate = () => {
     }
     handleClose();
   };
+
+  const updatePassword = event => setPassword(event.target.value);
 
   const isInvalid = false;
   const user = useAppSelector(state => state.userManagement.user);
@@ -138,6 +142,33 @@ export const UserManagementUpdate = () => {
                   },
                   validate: v => isEmail(v) || translate('global.messages.validate.email.invalid'),
                 }}
+              />
+              <ValidatedField
+                type="password"
+                name="password"
+                label={translate('global.form.newpassword.label')}
+                placeholder={translate('global.form.newpassword.placeholder')}
+                onChange={updatePassword}
+                validate={{
+                  required: { value: true, message: translate('global.messages.validate.newpassword.required') },
+                  minLength: { value: 4, message: translate('global.messages.validate.newpassword.minlength') },
+                  maxLength: { value: 50, message: translate('global.messages.validate.newpassword.maxlength') },
+                }}
+                data-cy="firstPassword"
+              />
+              <PasswordStrengthBar password={password} />
+              <ValidatedField
+                name="secondPassword"
+                label={translate('global.form.confirmpassword.label')}
+                placeholder={translate('global.form.confirmpassword.placeholder')}
+                type="password"
+                validate={{
+                  required: { value: true, message: translate('global.messages.validate.confirmpassword.required') },
+                  minLength: { value: 4, message: translate('global.messages.validate.confirmpassword.minlength') },
+                  maxLength: { value: 50, message: translate('global.messages.validate.confirmpassword.maxlength') },
+                  validate: v => v === password || translate('global.messages.error.dontmatch'),
+                }}
+                data-cy="secondPassword"
               />
               <ValidatedField
                 type="checkbox"
