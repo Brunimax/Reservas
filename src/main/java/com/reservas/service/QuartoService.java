@@ -3,9 +3,14 @@ package com.reservas.service;
 import com.reservas.domain.Quarto;
 import com.reservas.repository.QuartoRepository;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -107,5 +112,19 @@ public class QuartoService {
     public void delete(Long id) {
         log.debug("Request to delete Quarto : {}", id);
         quartoRepository.deleteById(id);
+    }
+
+    public Page<Quarto> listaParaPage(Pageable pageable, List<Quarto> lista, Long totalItens) {
+        int pageSize = pageable.getPageSize();
+        int currentPage = pageable.getPageNumber();
+        Page<Quarto> page = new PageImpl<Quarto>(lista, PageRequest.of(currentPage, pageSize), totalItens);
+        return page;
+    }
+
+    public Page<Quarto> listaQuartoPaginada(Pageable pageable, Map<String, String> params) {
+        Long countTotalQuartos = quartoRepository.countPagQuartos(params.get("search"));
+        List<Quarto> listaQuartos = quartoRepository.pagQuartos(params.get("search"), Integer.parseInt(params.get("page")));
+        Page<Quarto> quartosPage = listaParaPage(pageable, listaQuartos, countTotalQuartos);
+        return quartosPage;
     }
 }
