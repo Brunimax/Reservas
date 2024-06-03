@@ -2,7 +2,7 @@
   "reservasApp": {
     "hotel": {
       "home": {
-        "title": "Hotels",
+        "title": "Hoteis",
         "refreshListLabel": "Atualizar lista",
         "createLabel": "Criar novo Hotel",
         "createOrEditLabel": "Criar ou editar Hotel",
@@ -19,7 +19,7 @@
       },
       "id": "ID",
       "nome": "Nome",
-      "quantidadeQuartos": "Quantidade Quartos",
+      "quantidadeQuartos": "Quantidade de Quartos",
       "vagas": "Vagas",
       "classificacao": "Classificacao",
       "status": "Status",

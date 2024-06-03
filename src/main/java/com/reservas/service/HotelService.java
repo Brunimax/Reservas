@@ -3,9 +3,14 @@ package com.reservas.service;
 import com.reservas.domain.Hotel;
 import com.reservas.repository.HotelRepository;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -119,5 +124,22 @@ public class HotelService {
     public void delete(Long id) {
         log.debug("Request to delete Hotel : {}", id);
         hotelRepository.deleteById(id);
+    }
+
+    public Page<Hotel> listaParaPage(Pageable pageable, List<Hotel> lista, Long totalItens) {
+        int pageSize = pageable.getPageSize();
+        int currentPage = pageable.getPageNumber();
+        Page<Hotel> page = new PageImpl<Hotel>(lista, PageRequest.of(currentPage, pageSize), totalItens);
+        return page;
+    }
+
+    public Page<Hotel> listaHotelPaginada(Pageable pageable, Map<String, String> params) {
+        Long countTotalHoteis = hotelRepository.countPagHotel(params.get("search"));
+        int pageSize = pageable.getPageSize();
+        int currentPage = pageable.getPageNumber();
+        int offset = currentPage * pageSize;
+        List<Hotel> listaHoteis = hotelRepository.pagHotel(params.get("search"), pageSize, offset);
+        Page<Hotel> hoteisPage = listaParaPage(pageable, listaHoteis, countTotalHoteis);
+        return hoteisPage;
     }
 }

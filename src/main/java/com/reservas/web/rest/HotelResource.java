@@ -7,14 +7,21 @@ import com.reservas.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import tech.jhipster.web.util.HeaderUtil;
+import tech.jhipster.web.util.PaginationUtil;
 import tech.jhipster.web.util.ResponseUtil;
 
 /**
@@ -146,6 +153,19 @@ public class HotelResource {
         log.debug("REST request to get Hotel : {}", id);
         Optional<Hotel> hotel = hotelService.findOne(id);
         return ResponseUtil.wrapOrNotFound(hotel);
+    }
+
+    @GetMapping("/listaPage")
+    public ResponseEntity<List<Hotel>> getHotelPage(Pageable pageable, @RequestParam Map<String, String> params) {
+        log.debug("REST request to get hotel page with pageable: {}", pageable);
+        log.debug("Request parameters: {}", params);
+
+        final Page<Hotel> page = hotelService.listaHotelPaginada(pageable, params);
+
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        headers.add("X-Total-Count", Long.toString(page.getTotalElements()));
+
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
     /**
