@@ -12,6 +12,7 @@ const initialState: EntityState<IPessoa> = {
   entity: defaultValue,
   updating: false,
   updateSuccess: false,
+  totalItems: 0,
 };
 
 const apiUrl = 'api/pessoas';
@@ -20,6 +21,12 @@ const apiUrl = 'api/pessoas';
 
 export const getEntities = createAsyncThunk('pessoa/fetch_entity_list', async ({ sort }: IQueryParams) => {
   const requestUrl = `${apiUrl}?${sort ? `sort=${sort}&` : ''}cacheBuster=${new Date().getTime()}`;
+  return axios.get<IPessoa[]>(requestUrl);
+});
+
+export const getEntitiesList = createAsyncThunk('pessoa/fetch_entity_list', async ({ query, page }: IQueryParams) => {
+  const navaApiUrl = 'api/pessoas/listaPage';
+  const requestUrl = `${navaApiUrl}?${query ? `search=${query}&` : ''}page=${page}&size=10&sort=ASC&cacheBuster=${new Date().getTime()}`;
   return axios.get<IPessoa[]>(requestUrl);
 });
 
@@ -95,14 +102,8 @@ export const PessoaSlice = createEntitySlice({
         return {
           ...state,
           loading: false,
-          entities: data.sort((a, b) => {
-            if (!action.meta?.arg?.sort) {
-              return 1;
-            }
-            const order = action.meta.arg.sort.split(',')[1];
-            const predicate = action.meta.arg.sort.split(',')[0];
-            return order === ASC ? (a[predicate] < b[predicate] ? -1 : 1) : b[predicate] < a[predicate] ? -1 : 1;
-          }),
+          entities: data,
+          totalItems: parseInt(action.payload.headers['x-total-count'], 10),
         };
       })
       .addMatcher(isFulfilled(createEntity, updateEntity, partialUpdateEntity), (state, action) => {

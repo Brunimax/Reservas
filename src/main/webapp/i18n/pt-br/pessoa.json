@@ -20,7 +20,7 @@
       "id": "ID",
       "nome": "Nome",
       "sobrenome": "Sobrenome",
-      "cpf": "Cpf",
+      "cpf": "CPF",
       "dataNascimento": "Data Nascimento",
       "telefone": "Telefone",
       "email": "Email",

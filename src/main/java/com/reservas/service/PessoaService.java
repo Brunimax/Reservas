@@ -3,9 +3,14 @@ package com.reservas.service;
 import com.reservas.domain.Pessoa;
 import com.reservas.repository.PessoaRepository;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -113,5 +118,19 @@ public class PessoaService {
     public void delete(Long id) {
         log.debug("Request to delete Pessoa : {}", id);
         pessoaRepository.deleteById(id);
+    }
+
+    public Page<Pessoa> listaParaPage(Pageable pageable, List<Pessoa> lista, Long totalItens) {
+        int pageSize = pageable.getPageSize();
+        int currentPage = pageable.getPageNumber();
+        Page<Pessoa> page = new PageImpl<Pessoa>(lista, PageRequest.of(currentPage, pageSize), totalItens);
+        return page;
+    }
+
+    public Page<Pessoa> listaPessoaPaginada(Pageable pageable, Map<String, String> params) {
+        Long countTotalPessoas = pessoaRepository.countPagPessoas(params.get("search"));
+        List<Pessoa> listapessoas = pessoaRepository.pagPessoas(params.get("search"), Integer.parseInt(params.get("page")));
+        Page<Pessoa> pessoasPage = listaParaPage(pageable, listapessoas, countTotalPessoas);
+        return pessoasPage;
     }
 }
